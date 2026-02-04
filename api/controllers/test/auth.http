@@ -1,0 +1,13 @@
+GET http://localhost:3000/auth/me
+content-type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjo0LCJpYXQiOjE3NzAxOTQyNjYsImV4cCI6MTc3MDI4MDY2Nn0.p4RTG78D6XqN0DTbpZdQ0WB44o1JQE6S6g03EvT_3FA
+
+###
+
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+    "username": "toto",
+    "password": "123456789"
+}
