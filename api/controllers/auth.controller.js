@@ -1,4 +1,4 @@
-import { User } from "../models/index.js";
+import { User, Role } from "../models/index.js";
 import { StatusCodes } from "http-status-codes";
 import argon2 from "argon2";
 import jwt from "jsonwebtoken";
@@ -6,9 +6,17 @@ import "dotenv/config";
 
 export async function registerUser(req, res, next) {
     try {
+        // On récupère le role user pour avoir son ID
+        const userRole = await Role.findOne({
+            where: {
+                name: "user"
+            }
+        })
+        // On insere notre nouvel utilisateur avec le role user par défaut
         const user = await User.create({
             username: req.body.username,
-            password: await argon2.hash(req.body.password)
+            password: await argon2.hash(req.body.password),
+            role_id: userRole.id
         });
         res.status(StatusCodes.CREATED).json({
             id: user.id,
