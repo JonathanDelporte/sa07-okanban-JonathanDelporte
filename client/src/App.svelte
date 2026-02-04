@@ -77,7 +77,7 @@
 {#if isAuthenticated()}
 <section class="container mx-auto pr-8">
   <div class="flex justify-between mt-4">
-    <!-- {#if authStore.user.role.name === "admin"} -->
+    {#if authStore.user.role.name === "admin"}
     <button
       onclick={() => openModal(`add-list`)}
       class="bg-blue-500 text-white px-4 py-2 rounded">Add List</button
@@ -108,7 +108,7 @@
         </form>
       </div>
     </ModalForm>
-    <!-- {/if} -->
+    {/if}
   </div>
   <div
     use:dndzone={{ items: lists, type: "list" }}
@@ -137,4 +137,4 @@
       </h1>
     </div>
   </section>
-{/if} 
+{/if}

@@ -130,7 +130,7 @@
         {list.title}
       </h2>
     </div>
-    <!-- {#if authStore.user.role.name === "admin"} -->
+    {#if authStore.user.role.name === "admin"}
     <div
       class={`flex gap-2 absolute right-0 items-center h-ful ${hovered ? "opacity-100" : "opacity-0"}`}
     >
@@ -206,7 +206,7 @@
         </form>
       </div>
     </ModalForm>
-    <!-- {/if} -->
+    {/if}
   </div>
   <div
     use:dndzone={{ items: list.cards, type: "card" }}

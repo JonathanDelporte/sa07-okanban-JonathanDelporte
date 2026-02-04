@@ -56,7 +56,8 @@ export async function loginUser(req, res) {
 export async function getMe(req, res) {
     // req.user
     const user = await User.findByPk(req.user.user_id, {
-        attributes: ["id", "username"]
+        attributes: ["id", "username"],
+        include: 'role'
     });
     if(!user) {
         return res.status(StatusCodes.NOT_FOUND).json({error: "User not found"});

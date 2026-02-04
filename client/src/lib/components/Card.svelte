@@ -62,7 +62,7 @@
   <div class="markdown-body">
     <Markdown md={card.content} />
   </div>
-  <!-- {#if authStore.user.role.name === "admin"} -->
+  {#if authStore.user.role.name === "admin"}
   <div
     class={`flex gap-2 absolute right-2 items-center h-full ${hovered ? "opacity-100" : "opacity-0"}`}
   >
@@ -107,5 +107,5 @@
       handleConfirm={handleDeleteCard}
     />
   </div>
-  <!-- {/if} -->
+  {/if}
 </div>
