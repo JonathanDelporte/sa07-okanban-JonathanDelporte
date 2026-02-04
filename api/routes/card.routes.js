@@ -9,6 +9,6 @@ router.get('/', getAll);
 router.get('/:id', validateId, getById);
 router.post('/', validateCardCreation, create);
 router.patch('/:id', validateId, validateCardUpdate, update);
-router.delete('/:id',isAllowed('admin'), validateId, deleteById);
+router.delete('/:id', isAllowed('admin'), validateId, deleteById);
 
 export default router;

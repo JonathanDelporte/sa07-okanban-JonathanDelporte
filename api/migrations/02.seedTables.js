@@ -27,18 +27,15 @@ await momBirthday.addTag(urgentTag);
 await reblochonCard.addTag(urgentTag);
 
 console.log("🚧 Ajout de roles...");
-const userRole = await Role.create({name : "user"});
+const userRole = await Role.create({name: "user"});
 const adminRole = await Role.create({name: "admin"});
-
-
 
 console.log("🚧 Ajout de users...");
 await User.create({
     username: 'admin',
-    password: await argon2.hash('admin'),
+    password: await argon2.hash('admin123456789'),
     role_id: adminRole.id
 })
-
 
 console.log("✅ Migration OK ! Fermeture de la base..."); // On ferme le tunnel de connexion pour que le script s'arrête bien
 await sequelize.close();

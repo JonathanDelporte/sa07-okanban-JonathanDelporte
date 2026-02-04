@@ -7,14 +7,14 @@ export const registerUser = async (user) => {
 export const loginUser = async (credentials) => {
   const { token } = await api("/auth/login", "POST", credentials);
   const user = await fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
-     method: "GET",
-     headers: {
-       Authorization: `Bearer ${token}`,
-     },
-   }).then((res) => res.json());
-   return { token, user };
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((res) => res.json());
+  return { token, user };
 
-  // return { token };
+  //return { token };
 };
 
 export const getUser = async () => {

@@ -4,20 +4,23 @@ import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 import "dotenv/config";
 
+
 export async function registerUser(req, res, next) {
     try {
-        // On récupère le role user pour avoir son ID
+        // On recupere le role user pour avoir son ID
         const userRole = await Role.findOne({
             where: {
                 name: "user"
             }
         })
-        // On insere notre nouvel utilisateur avec le role user par défaut
+
+        // On insere notre nouvel utilisateur avec le role user par defaut
         const user = await User.create({
             username: req.body.username,
             password: await argon2.hash(req.body.password),
             role_id: userRole.id
         });
+
         res.status(StatusCodes.CREATED).json({
             id: user.id,
             username: user.username
@@ -46,13 +49,11 @@ export async function loginUser(req, res) {
     }
     const token = jwt.sign({user_id: user.id}, process.env.JWT_SECRET, {
         expiresIn: "1d"
-    }); 
-    console.log(token);   
+    });
     res.status(StatusCodes.OK).json({token: token});
 }
 
-
-// Permet de récupérer les infos de l'utilisateur connecté
+// Permet de recuperer les informations de l'utilisateur connecté
 export async function getMe(req, res) {
     // req.user
     const user = await User.findByPk(req.user.user_id, {
@@ -62,5 +63,5 @@ export async function getMe(req, res) {
     if(!user) {
         return res.status(StatusCodes.NOT_FOUND).json({error: "User not found"});
     }
-    res.json(req.user.user_id);
+    res.status(StatusCodes.OK).json(user);
 }

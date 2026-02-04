@@ -9,7 +9,7 @@ router.get('/', getAll);
 router.get('/:id', validateId, getById);
 router.post('/', validateTagCreation, create);
 router.patch('/:id', validateId, validateTagUpdate, update);
-router.delete('/:id', isAllowed('user'), validateId, deleteById);
+router.delete('/:id', isAllowed('admin'), validateId, deleteById);
 router.get('/:id/cards', validateId, getCardsByTagId);
 
 export default router;

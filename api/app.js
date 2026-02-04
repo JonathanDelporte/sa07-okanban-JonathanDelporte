@@ -1,5 +1,5 @@
-import { xss } from "express-xss-sanitizer";
 import cors from "cors";
+import { xss } from "express-xss-sanitizer";
 import "dotenv/config";
 import express from "express";
 import { authenticate, errorHandler } from "./middlewares/common.middleware.js";
@@ -8,27 +8,25 @@ import cardRoutes from "./routes/card.routes.js";
 import tagRoutes from "./routes/tag.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 
-
 const PORT = process.env.PORT || 3000;
 
 const app = express();
 
-app.use(cors());
-// permet à notre navigateur de contacter notre API
-
-app.use(xss());
-// Permet de protéger notre API contre le XSS
-
 app.use(express.json());
+//Permet que notre navigateur puisse contacter notre API
+app.use(cors());
+
+// Permet de proteger notre API contre le XSS
+app.use(xss());
 
 app.use("/auth", authRoutes);
-// on ajoute notre middleware d'authentification
+
+// On ajoute notre middleware d'authentification
 app.use(authenticate);
 
 app.use("/lists", listRoutes);
 app.use("/cards", cardRoutes);
 app.use("/tags", tagRoutes);
-
 
 app.use(errorHandler);
 app.listen(PORT, () => {
